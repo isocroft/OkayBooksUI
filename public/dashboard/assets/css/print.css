@@ -1,0 +1,55 @@
+@page {
+    size: A4 portrait;
+    margin: 1cm;
+    content: normal;
+    margin-bottom: 0;
+}
+
+@page :first {
+    margin-top: 0cm; /* Top margin on first page 0cm */
+}
+
+@page :right{
+    @bottom-right-corner {
+      content: counter(page);
+    }
+}
+  
+@page :left{
+    @bottom-left-corner {
+      content: counter(page);
+    }
+}
+
+@page :blank {
+    @top-center { content: "This page is intentionally left blank." }
+}
+
+@media print {
+    /* This makes sure that the PDF is rendered exactly like our layout. */
+
+    html,
+    body {
+        /* Tell browsers to print background colors */
+        -webkit-print-color-adjust: exact; /* Chrome/Safari/Edge/Opera */
+        color-adjust: exact; /* Firefox */
+    }
+}
+
+h1, h2, h3, h4, h5 {
+    page-break-before: auto;
+    page-break-after: avoid;
+    page-break-inside:avoid;
+}
+
+table, figure {
+    page-break-inside: avoid;
+}
+
+aside {
+    display: none;
+}
+
+a[href]:after {
+    content: none !important;
+}
