@@ -1,8 +1,5 @@
-/**!
-  * Main Section Components
-  */
 
-/*! Book Corousel */
+/*! Carousel Section */
 
 .carousel {
   min-height: 25.313rem;
@@ -117,5 +114,3 @@
 .carousel .flickity-page-dots .dot.is-selected {
   background-color: #64C000;
 }
-
-/*! Details Section */
