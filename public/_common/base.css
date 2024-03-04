@@ -21,9 +21,10 @@
     flex-direction: row;
 }
 
-.flex-row-no-wrap {
-    -ms-flex-wrap: nowrap;
-    flex-wrap: nowrap;
+.flex-row,
+.flex-column {
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
 }
 
 .flex-column,
@@ -36,6 +37,7 @@
     flex-direction: column;
 }
 
+.flex-row-no-wrap,
 .flex-column-no-wrap {
     -ms-flex-wrap: nowrap;
     flex-wrap: nowrap;
