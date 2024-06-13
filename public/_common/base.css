@@ -22,7 +22,9 @@
 }
 
 .flex-row,
-.flex-column {
+.flex-column,
+.flex-row-wrap,
+.flex-column-wrap {
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
 }
@@ -74,6 +76,15 @@
   -ms-flex: auto;
 }
 
+.flex-flexible-equal-parts {
+  min-width: fit-content;
+  flex: 1;
+  -webkit-flex: 1;
+  -moz-flex: 1;
+  -ms-flex: 1;
+  white-space: nowrap;
+}
+
 .flex-fixed-\[\+350\] {
     flex-basis: 21.875rem;
 }
@@ -81,10 +92,12 @@
 .flex-fixed-collaspable {
     flex-shrink: 0;
     -webkit-flex-shrink: 0;
+    flex-basis: auto;
     min-width: 0;
 }
 
 .flex-fluid {
+    min-width: 0;
     flex-basis: auto; /* Override back to default */
     flex: 1;
     -webkit-flex: 1;
@@ -116,8 +129,30 @@
     margin-left: 1.25rem;
 }
 
+.text-indext-\[x3\] {
+    text-indent: 0.19rem;
+}
+
+.static-\[shrink-to-fit\] {
+    flex: 1 1 auto;
+    /* shrink-to-fit trigger => */display: inline-block;
+    min-height: 0;
+}
+  
+.absolute-\[shrink-to-fit\] {
+    flex: 1 1 auto;
+    /* shrink-to-fit trigger => */position: absolute;
+    isolation: isolate;
+}
+
 .mask-overflow {
     overflow: hidden;
+}
+
+.text-compact.mask-overflow {
+    text-overflow: ellipsis;
+    vertical-align: middle;
+    white-space: pre-line;
 }
 
 .allow-overflow {
