@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
 
     <!-- -->
-    <meta name="generator" content="HTMX Server-rendered">
+    <meta name="generator" content="FILE Server-rendered">
     <!-- Web crawler instructions -->
     <meta name="robots" content="noimageindex, noarchive, nofollow">
 
@@ -19,8 +19,6 @@
 
     <!-- Setup mobile-optimized viewport directives -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Fix IE browser mode -->
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js" async crossorigin="anonymous"></script>
 
@@ -35,7 +33,7 @@
     <!-- Setup HTTP/2 preload to prioritize eager-loading of JavaScript -->
     <link rel="preload" href="https://unpkg.com/matchmedia-polyfill@0.3.2/matchMedia.js" as="script">
     <link rel="preload" href="https://unpkg.com/matchmedia-polyfill@0.3.2/matchMedia.addListener.js" as="script">
-    <link rel="preload" href="../_common/components.js" as="script" />
+    <link rel="preload" href="../_common/components.js?id=08302" as="script" />
 
     <title>Okay Book Club - Admin</title>
 
@@ -57,11 +55,12 @@
     <noscript><link rel="stylesheet" href="./assets/css/listings.css"></noscript>
     <noscript><link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css" crossorigin="anonymous"></noscript>
 
+    <script src="../_common/components.js?id=08302"></script>
     <!-- Get Google Fonts file -->
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,400;0,500;0,700;1,400;1,700&display=swap" rel="stylesheet">
 
     <!-- If the browser doesn't support link[rel=preload], use JavaScript to setup a polyfill as load CSS asynchronously -->
-    <script id="link-preload-polyfill" type="text/javascript" data-hash="">
+    <script id="link-preload-polyfill" type="text/javascript" data-hash="'sha256-nfqxNUHyQH25sks994p99ZX7KIuoDZF+1Lhi3u0Qp1o='">
       /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
       !function(c){"use strict";var e=function(e,t,n,r){var o,i=c.document,a=i.createElement("link");if(t)o=t;else{var d=(i.body||i.getElementsByTagName("head")[0]).childNodes;o=d[d.length-1]}var f=i.styleSheets;if(r)for(var l in r)r.hasOwnProperty(l)&&a.setAttribute(l,r[l]);a.rel="stylesheet",a.href=e,a.media="only x",function e(t){if(i.body)return t();setTimeout(function(){e(t)})}(function(){o.parentNode.insertBefore(a,t?o:o.nextSibling)});var s=function(e){for(var t=a.href,n=f.length;n--;)if(f[n].href===t)return e();setTimeout(function(){s(e)})};function u(){a.addEventListener&&a.removeEventListener("load",u),a.media=n||"all"}return a.addEventListener&&a.addEventListener("load",u),(a.onloadcssdefined=s)(u),a};"undefined"!=typeof exports?exports.loadCSS=e:c.loadCSS=e}("undefined"!=typeof global?global:this);
 
@@ -75,12 +74,12 @@
     </script>
 
     <!-- Enhance the Critical Rendering Path by deprioritizing print media styles for devices they aren't mean for -->
-    <link media="print" rel="stylesheet" href="./_common/print.css">
+    <link media="print" rel="stylesheet" href="../_common/print.css">
 
     <!-- Enhance the Critical Rendering Path by deprioritizing desktop styles for devices they aren't mean for -->
-    <link media="screen and (min-width: 1024px)" rel="stylesheet" href="./assets/css/responsives/desktop.css">
+    <link media="screen and (min-width: 1024px)" rel="stylesheet" href="./assets/css/screens/desktop.css">
     <!-- Enhance the Critical Rendering Path by deprioritizing mobile styles for devices they aren't mean for -->
-    <link media="screen and (max-width: 560px)" rel="stylesheet" href="./assets/css/responsives/mobile.css">
+    <link media="screen and (max-width: 560px)" rel="stylesheet" href="./assets/css/screens/mobile.css">
 
     <!-- Load Browser Tab/Window Icon -->
     <link rel="icon" href="./assets/images/favicon.ico" type="image/x-icon">
@@ -122,7 +121,7 @@
               tabindex="0"
             />
             <button id="search-textbox-button" type="submit" tabindex="0" class="floating-banner_search-button">
-              <img alt="textbox-search-image" src="assets/images/svg/search.svg">
+              <img alt="textbox-search-image" src="./assets/images/svg/search.svg">
             </button>
           </form>
           <ul class="full-width position-absolute floating-banner_search-autocomplete-dropdown-list" role="listbox" id="autocomplete-dropdown" aria-label="Search AutoComplete Dropdown List">
@@ -132,22 +131,22 @@
         <section class="display-flex flex-aligned-center floating-banner_user-controls" role="region" aria-label="User Controls" tabindex="-1">
           <div class="floating-banner_user-search-trigger" tabindex="0" role="presentation">
             <button class="floating_banner_user-search-trigger-button" id="searchbox-popup-button" aria-haspopup="true" aria-controls="menu" tabindex="-1">
-              <img class="full-width" alt="user-search-magnifying-glass-image" src="assets/images/svg/search.svg" tabindex="-1">
+              <img class="full-width" alt="user-search-magnifying-glass-image" src="./assets/images/svg/search.svg" tabindex="-1">
             </button>
           </div>
           <div class="floating-banner_user-book-library" tabindex="0" role="presentation">
             <span class="display-block" role="figure" tabindex="-1">
-              <img alt="user-library-stack-image" src="assets/images/svg/libraries.svg" tabindex="-1">
+              <img alt="user-library-stack-image" src="./assets/images/svg/libraries.svg" tabindex="-1">
             </span>
           </div>
           <div class="position-relative floating-banner_user-notifications" data-count="3" tabindex="0" role="presentation">
             <span class="display-block" role="figure" tabindex="-1">
-              <img alt="user-notification-bell-image" src="assets/images/svg/notifications.svg" tabindex="-1">
+              <img alt="user-notification-bell-image" src="./assets/images/svg/notifications.svg" tabindex="-1">
             </span>
           </div>
           <div class="left-gutter-[x20] floating-banner_user-avatar-photo" tabindex="0" role="presentation">
             <span class="image-size-medium avatar-wrapper" role="figure" tabindex="-1">
-              <img class="avatar-image" alt="user-persona-photo" src="assets/images/svg/persona.png" tabindex="-1" data-object-fit="cover">
+              <img class="avatar-image" alt="user-persona-photo" src="./assets/images/svg/avatar-default.svg?id=97914" tabindex="-1" data-object-fit="cover">
             </span>
           </div>
         </section>
@@ -157,7 +156,7 @@
           <div class="allow-overflow full-height" id="content-area-container">
             <div class="menu-trigger-drawer">
               <button class="display-block mask-overflow" id="dismiss-menu-trigger">
-                <img alt="dismiss-sidebar-image" src="assets/images/svg/back.svg">
+                <img alt="dismiss-sidebar-image" src="./assets/images/svg/back.svg">
               </button>
             </div>
             <header class="fixed-content-area_side-bar-heading" role="heading" aria-level="3" aria-label="Side Bar Menu Heading">

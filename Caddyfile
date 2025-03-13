@@ -1,0 +1,7 @@
+okay.local:443 {
+	tls {
+		on_demand
+	}
+	root public
+	file_server
+}
