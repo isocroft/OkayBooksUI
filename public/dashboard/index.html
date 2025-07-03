@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr" mozdisallowselectionprint moznomarginboxes>
+<html lang="en" class="no-js" mozdisallowselectionprint moznomarginboxes>
   <head>
     <meta charset="UTF-8">
 
-    <!-- -->
-    <meta name="generator" content="FILE Server-rendered">
+    <!-- Identifies one of the software packages used to generate the document -->
+    <meta name="generator" content="VS Code + Manual Build">
+
     <!-- Web crawler instructions -->
     <meta name="robots" content="noimageindex, noarchive, nofollow">
 
@@ -33,18 +34,25 @@
     <!-- Setup HTTP/2 preload to prioritize eager-loading of JavaScript -->
     <link rel="preload" href="https://unpkg.com/matchmedia-polyfill@0.3.2/matchMedia.js" as="script">
     <link rel="preload" href="https://unpkg.com/matchmedia-polyfill@0.3.2/matchMedia.addListener.js" as="script">
-    <link rel="preload" href="../_common/components.js?id=08302" as="script" />
+    <link rel="preload" href="../_common/components.js" as="script" />
 
     <title>Okay Book Club - Admin</title>
 
     <!-- Indicates if devices should try to interpret various formats and make actionable links out of them. -->
-    <!-- For example it controles if telephone numbers on mobile that can be clicked to dial or not.-->
+    <!-- For example this meta tag controls if telephone numbers on mobile that can be clicked to dial or not.-->
     <meta name="format-detection" content="telephone=no">
 
+    <!-- SEE: https://metatags.netlify.app/ -->
     <!-- ! Page description ! -->
     <meta name="description" content="Okay book online club house">
     <meta name="author" content="Ifeora Okechukwu (isocroft@gmail.com)">
-    <!-- -->
+
+    <!-- Apple Mobile Web Metadata -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#ffffff">
+
+    <!-- Identifies the author of this HTML document -->
     <link rel="author" href="https://isocroft.vercel.app/about">
 
     <!-- If JavaScript isn't enabled, opt for degraded experience by blocking the Critical Rendering Path by downloading CSS immediately -->
@@ -55,7 +63,7 @@
     <noscript><link rel="stylesheet" href="./assets/css/listings.css"></noscript>
     <noscript><link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css" crossorigin="anonymous"></noscript>
 
-    <script src="../_common/components.js?id=08302"></script>
+    <script src="../_common/components.js"></script>
     <!-- Get Google Fonts file -->
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,400;0,500;0,700;1,400;1,700&display=swap" rel="stylesheet">
 
@@ -77,9 +85,9 @@
     <link media="print" rel="stylesheet" href="../_common/print.css">
 
     <!-- Enhance the Critical Rendering Path by deprioritizing desktop styles for devices they aren't mean for -->
-    <link media="screen and (min-width: 1024px)" rel="stylesheet" href="./assets/css/screens/desktop.css">
+    <link media="screen and (min-width: 890px)" rel="stylesheet" href="./assets/css/screens/desktop.css">
     <!-- Enhance the Critical Rendering Path by deprioritizing mobile styles for devices they aren't mean for -->
-    <link media="screen and (max-width: 560px)" rel="stylesheet" href="./assets/css/screens/mobile.css">
+    <link media="screen and (min-width: 320px) and (max-width: 767px)" rel="stylesheet" href="./assets/css/screens/mobile.css">
 
     <!-- Load Browser Tab/Window Icon -->
     <link rel="icon" href="./assets/images/favicon.ico" type="image/x-icon">

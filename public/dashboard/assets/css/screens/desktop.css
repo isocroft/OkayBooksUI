@@ -1,0 +1,19 @@
+/**!
+  * Main Section Components
+  */
+
+/*! Device Details Section */
+@media (any-pointer: fine) {
+  input[type="checkbox"] {
+    appearance: none;
+    width: 15px;
+    height: 15px;
+  }
+}
+
+@media (resolution: 2dppx) {
+  /* Styles for high-resolution (Retina) displays */
+  body {
+    font-size: 1rem;
+  }
+}

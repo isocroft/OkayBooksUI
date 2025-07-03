@@ -2,6 +2,41 @@
   * Main Section Components
   */
 
-/*! Book Corousel */
 
-/*! Details Section */
+/*! Device Details Section */
+@media (any-pointer: coarse) {
+  /*  Styles for pointer devices that have limited pointing accuracy */
+  input[type="checkbox"] {
+    appearance: none;
+    width: 30px;
+    height: 30px;
+  }
+}
+
+@media (resolution: 1dppx) {
+  body {
+    font-size: 1.2rem;
+  }
+}
+
+@media (min-resolution: 1.5dppx) {
+  /* Styles for devices with 1.5dppx or higher */
+  [role="image"] {
+    width: 200px;
+  }
+}
+
+@media (max-resolution: 1dppx) {
+  /* Styles for devices with 1dppx or lower */
+  small {
+    font-size: 1em;
+  }
+}
+
+/* Combining resolution with other media features */
+@media (max-width: 766px) and (resolution: 2dppx) {
+  /* Styles for tablets or smaller screens with high-resolution */
+  body {
+    font-size: 0.9rem;
+  }
+}

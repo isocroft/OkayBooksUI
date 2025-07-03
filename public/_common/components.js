@@ -233,7 +233,8 @@
             genres: [
                 "Motivational"
             ],
-            status: "",
+            isbn: 9245789930312,
+            status: "in_discussion",
             ratings: 4.0,
             year_published: "2005",
             likes_count: 29,
@@ -247,7 +248,8 @@
             genres: [
                 "Motivational"
             ],
-            status: "",
+            isbn: 1294059930311,
+            status: "in_discussion",
             ratings: 4.0,
             year_published: "2014",
             likes_count: 29,
@@ -267,10 +269,14 @@
 
         if (event.matches) {
             // viewport is less than 1146px wide
-            inputElement.placeholder = "Search";
+            if (inputElement) {
+                inputElement.placeholder = "Search";
+            }
         } else {
             // viewport is at least 1146px wide
-            inputElement.placeholder = "Search books, genres, authors, etc.";
+            if (inputElement) {
+                inputElement.placeholder = "Search books, genres, authors, etc.";
+            }
         }
     }
 
@@ -295,7 +301,139 @@
      */
 
     function onPageLoadedOrReady (event) {
-       
+
+        page.removeEventListener("DOMContentLoaded", onPageLoadedOrReady);
+
+        /**
+         * @var
+         */
+        // Get reference to the search text box in the page header banner
+        var inputElement = page.getElementById("search-textbox");
+
+        // Check the initial state of the media query
+        if (mediaQuery.matches) {
+            // viewport is less than 1146px wide
+            if (inputElement) {
+                inputElement.placeholder = "Search";
+            }
+        } else {
+            // viewport is at least 1146px wide
+            if (inputElement) {
+                inputElement.placeholder = "Search books, genres, authors, etc.";
+            }
+        }
+
+        if (inputElement) {
+            inputElement.addEventListener("input", onSearchTextBoxInput);
+        }
+
+        if (inputElement) {
+            inputElement.addEventListener("blur", onSearchTextBoxBlur);
+        }
+
+        if (inputElement) {
+            inputElement.addEventListener("focus", onSearchTextBoxFocus);
+        }
+
+        /**
+         * @var
+         */
+        // Get reference to the button for the search box form to intiate a search
+        var buttonElementSearch = page.getElementById("search-textbox-button");
+
+        buttonElementSearch.addEventListener("click", (event) => {
+            // Get reference to the search text box in the page header banner
+            var inputElement = event.target.form.elements["search-textbox"];
+
+            // Get reference to autocomplete dropdown list for search text box 
+            var listElement = page.getElementById("autocomplete-dropdown");
+
+            var inputText = inputElement.value;
+
+            inputElement.value = "";
+
+
+        });
+
+        /**
+         * @var
+         */
+        // Get reference to the button for hiding the search box in mobile view
+        var buttonElementSearchTrigger = page.getElementById("dismiss-search-trigger");
+
+        buttonElementSearchTrigger.addEventListener("click", () => {
+            var sectionElement = page.getElementById("search-bar");
+
+            if (sectionElement.classList.contains("show-as-banner-overlay")) {
+                sectionElement.classList.remove("show-as-banner-overlay");
+            }
+        });
+
+        /**
+         * @var
+         */
+        // Get reference to the button for showing the search box in mobile view
+        var buttonElementSearchPopup = page.getElementById("searchbox-popup-button");
+
+        buttonElementSearchPopup.addEventListener("click", function () {
+            var searchBarElement = page.getElementById("search-bar");
+
+            // Show the search box by adding a CSS class
+            if (! searchBarElement.classList.contains("show-as-banner-overlay")) {
+                searchBarElement.classList.add("show-as-banner-overlay");
+            }
+        });
+
+        /**
+         * @var
+         */
+        // Get reference to the button for hiding the  sidde bar menu in mobile view
+        var buttonElementMenuDismissTrigger = page.getElementById("dismiss-menu-trigger");
+
+        buttonElementMenuDismissTrigger.addEventListener("click", function () {
+            var sideBarMenuElement = page.getElementById("side-bar");
+            var menuOverlayElement = page.getElementById("menu-shade");
+
+            // Hide the side bar by adding a CSS class
+            if (sideBarMenuElement.classList.contains("show-as-menu-slide-in")) {
+                sideBarMenuElement.classList.remove("show-as-menu-slide-in");
+            }
+
+            // Hide the sidebar menu overlay by adding a CSS class
+            if ( menuOverlayElement.classList.contains("show-when-menu-slide-in")) {
+                menuOverlayElement.classList.remove("show-when-menu-slide-in");
+            }
+        });
+
+        /**
+         * @var
+         */
+        // Get reference to the overlay cover
+        var menuOverlayElement = page.getElementById("menu-shade");
+
+        menuOverlayElement.addEventListener("click", function () {
+            buttonElementMenuDismissTrigger.click();
+        });
+
+        /**
+         * @var
+         */
+        // Get reference to the button for showing the side bar menu in mobile view
+        var buttonElementMenuShowTrigger = page.getElementById("menu-trigger-button");
+        buttonElementMenuShowTrigger.addEventListener("click", function () {
+            var sideBarMenuElement = page.getElementById("side-bar");
+            var menuOverlayElement = page.getElementById("menu-shade");
+
+            // Show the side bar by adding a CSS class
+            if (! sideBarMenuElement.classList.contains("show-as-menu-slide-in")) {
+                sideBarMenuElement.classList.add("show-as-menu-slide-in");
+            }
+
+            // Show the sidebar menu overlay by adding a CSS class
+            if (! menuOverlayElement.classList.contains("show-when-menu-slide-in")) {
+                menuOverlayElement.classList.add("show-when-menu-slide-in");
+            }
+        });
     }
 
     page.addEventListener("DOMContentLoaded", onPageLoadedOrReady);
@@ -308,21 +446,6 @@
         mediaQuery.addListener(onMediaDeviceQueried);
     } else {
         mediaQuery.addEventListener(onMediaDeviceQueried);
-    }
-
-    /**
-     * @var
-     */
-    // Get reference to the search text box in the page header banner
-    var inputElement = page.getElementById("search-textbox");
-
-    // Check the initial state of the media query
-    if (mediaQuery.matches) {
-        // viewport is less than 1146px wide
-        inputElement.placeholder = "Search";
-    } else {
-        // viewport is at least 1146px wide
-        inputElement.placeholder = "Search books, genres, authors, etc.";
     }
 
     /**
@@ -379,7 +502,7 @@
         listElement.appendChild(subTreeFragment);
     }
 
-    inputElement.addEventListener("input", onSearchTextBoxInput);
+    
 
     /**
      * @callback onSearchTextBoxBlur
@@ -391,9 +514,6 @@
         // Get reference to autocomplete dropdown list for search text box 
         var listElement = page.getElementById("autocomplete-dropdown");
 
-        // Create document fragment
-        var docFragment = page.createDocumentFragment();
-
         // Get reference to search text box
         var inputElement =  event.target;
 
@@ -404,7 +524,7 @@
         }
     }
 
-    inputElement.addEventListener("blur", onSearchTextBoxBlur);
+
 
     /**
      * @callback onSearchTextBoxFocus
@@ -416,118 +536,12 @@
         // Get reference to autocomplete dropdown list for search text box 
         var listElement = page.getElementById("autocomplete-dropdown");
 
-        // Create document fragment
-        var docFragment = page.createDocumentFragment();
 
         if (! listElement.classList.contains("show-as-popup")) {
             listElement.classList.add("show-as-popup");
         }
     }
 
-    inputElement.addEventListener("focus", onSearchTextBoxFocus);
 
-
-
-
-
-    /**
-     * @var
-     */
-    // Get reference to the button for the search box form to intiate a search
-    var buttonElementSearch = page.getElementById("search-textbox-button");
-
-    buttonElementSearch.addEventListener("click", (event) => {
-        // Get reference to the search text box in the page header banner
-        var inputElement = event.target.form.elements["search-textbox"];
-
-        // Get reference to autocomplete dropdown list for search text box 
-        var listElement = page.getElementById("autocomplete-dropdown");
-
-        var inputText = inputElement.value;
-
-        inputElement.value = "";
-
-
-    });
-
-
-
-
-
-    /**
-     * @var
-     */
-    // Get reference to the button for hiding the search box in mobile view
-    var buttonElementSearchTrigger = page.getElementById("dismiss-search-trigger");
-    buttonElementSearchTrigger.addEventListener("click", () => {
-        var sectionElement = page.getElementById("search-bar");
-
-        if (sectionElement.classList.contains("show-as-banner-overlay")) {
-            sectionElement.classList.remove("show-as-banner-overlay");
-        }
-    });
-
-    /**
-     * @var
-     */
-    // Get reference to the button for showing the search box in mobile view
-    var buttonElementSearchPopup = page.getElementById("searchbox-popup-button");
-    buttonElementSearchPopup.addEventListener("click", function () {
-        var searchBarElement = page.getElementById("search-bar");
-
-        // Show the search box by adding a CSS class
-        if (! searchBarElement.classList.contains("show-as-banner-overlay")) {
-            searchBarElement.classList.add("show-as-banner-overlay");
-        }
-    });
-
-    /**
-     * @var
-     */
-    // Get reference to the button for hiding the  sidde bar menu in mobile view
-    var buttonElementMenuDismissTrigger = page.getElementById("dismiss-menu-trigger");
-    buttonElementMenuDismissTrigger.addEventListener("click", function () {
-        var sideBarMenuElement = page.getElementById("side-bar");
-        var menuOverlayElement = page.getElementById("menu-shade");
-
-        // Hide the side bar by adding a CSS class
-        if (sideBarMenuElement.classList.contains("show-as-menu-slide-in")) {
-            sideBarMenuElement.classList.remove("show-as-menu-slide-in");
-        }
-
-        // Hide the sidebar menu overlay by adding a CSS class
-        if ( menuOverlayElement.classList.contains("show-when-menu-slide-in")) {
-            menuOverlayElement.classList.remove("show-when-menu-slide-in");
-        }
-    });
-
-    /**
-     * @var
-     */
-    // Get reference to the overlay cover
-    var menuOverlayElement = page.getElementById("menu-shade");
-    menuOverlayElement.addEventListener("click", function () {
-        buttonElementMenuDismissTrigger.click();
-    });
-
-    /**
-     * @var
-     */
-    // Get reference to the button for showing the side bar menu in mobile view
-    var buttonElementMenuShowTrigger = page.getElementById("menu-trigger-button");
-    buttonElementMenuShowTrigger.addEventListener("click", function () {
-        var sideBarMenuElement = page.getElementById("side-bar");
-        var menuOverlayElement = page.getElementById("menu-shade");
-
-        // Show the side bar by adding a CSS class
-        if (! sideBarMenuElement.classList.contains("show-as-menu-slide-in")) {
-            sideBarMenuElement.classList.add("show-as-menu-slide-in");
-        }
-
-        // Show the sidebar menu overlay by adding a CSS class
-        if (! menuOverlayElement.classList.contains("show-when-menu-slide-in")) {
-            menuOverlayElement.classList.add("show-when-menu-slide-in");
-        }
-    });
 }(window, document));
 

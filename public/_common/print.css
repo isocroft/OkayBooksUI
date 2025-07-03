@@ -9,7 +9,7 @@
     margin-top: 0cm; /* Top margin on first page 0cm */
 }
 
-@page :right{
+@page :right {
     @bottom-right-corner {
       content: counter(page);
     }
