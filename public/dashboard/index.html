@@ -11,18 +11,27 @@
 
     <!-- SEE: https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
     <!-- Setup Content-Security-Policy: CSP 'sha-256-xxxxxxxxxxxxxxxxxxxxxxxxxx' generated on https://report-uri.com/home/hash -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src https://unpkg.com 'self' 'unsafe-hashes' 'sha256-4TKGVE0ArotiPVSGs6AAgH2OZFxkIZVmLos9Z/uvrAw=' 'sha256-F1noxsLOnJhyRSgc0zu5JgzoLjG2BBMaXaSG24k2mRM=' 'sha256-nfqxNUHyQH25sks994p99ZX7KIuoDZF+1Lhi3u0Qp1o=' 'sha256-hWC45CyizdmsZ60aJZVy86TxZR3DwVpwjTKVgaqB7P0=' 'sha256-3YN0wDiU/mNlaFTMeLZ7/SEie/LqY05buNjl2V1SXm4=' 'sha256-XZpF3Z2JvRfkb0neLn5L+qJvRE3W3f1lMwMMf8AEeJA='; style-src 'self' https://unpkg.com https://fonts.googleapis.com; img-src 'self'; font-src https://fonts.gstatic.com; require-trusted-types-for 'script'; trusted-types dompurify puritan">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src https://unpkg.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net 'self' 'unsafe-hashes' 'sha256-4TKGVE0ArotiPVSGs6AAgH2OZFxkIZVmLos9Z/uvrAw=' 'sha256-F1noxsLOnJhyRSgc0zu5JgzoLjG2BBMaXaSG24k2mRM=' 'sha256-nfqxNUHyQH25sks994p99ZX7KIuoDZF+1Lhi3u0Qp1o=' 'sha256-hWC45CyizdmsZ60aJZVy86TxZR3DwVpwjTKVgaqB7P0=' 'sha256-3YN0wDiU/mNlaFTMeLZ7/SEie/LqY05buNjl2V1SXm4=' 'sha256-XZpF3Z2JvRfkb0neLn5L+qJvRE3W3f1lMwMMf8AEeJA='; style-src 'self' https://unpkg.com https://fonts.googleapis.com; img-src 'self'; font-src https://fonts.gstatic.com; require-trusted-types-for 'script'; trusted-types dompurify puritan">
 
-    <!-- Setup HTTP/2 preconnect to prioritize eager-connection over the network for staic resources -->
+    <!-- Setup HTTP/2 preconnect to prioritize eager-connection over TCP for static resources (e.g. .js, .css, .jpg, .png) -->
     <link rel="preconnect" href="https://unpkg.com" crossorigin>
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+	<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 
     <!-- Setup mobile-optimized viewport directives -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 	<!-- Setup Sub-Resource-Intergrity Hash: SRI 'sha-384-xxxxxxxxxxxxxxxxxxxxxxxxxxx' generated on https://srihash.org -->
-    <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js" async crossorigin="anonymous" integrity="sha384-6ma6pGRLjeu6PkX+yOaR0dUGt6OQl9evbv3H2kdLWwIXtUztaQrWUlbRBPVpDH4B" data-csp-nonce="xxxxxxxxxxxx"></script>
+    <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js" async crossorigin="anonymous" integrity="sha384-6ma6pGRLjeu6PkX+yOaR0dUGt6OQl9evbv3H2kdLWwIXtUztaQrWUlbRBPVpDH4B"></script>
+
+	<!-- INFO: Modernizr is optional here -->
+	<!-- Setup Sub-Resource-Intergrity Hash: SRI 'sha-384-xxxxxxxxxxxxxxxxxxxxxxxxxxx' generated on https://srihash.org -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" defer="defer" crossorigin="anonymous" integrity="sha384-bPV3mA2eo3edoq56VzcPBmG1N1QVUfjYMxVIJPPzyFJyFZ8GFfN7Npt06Zr23qts" data-csp-nonce="xxxxxxxxxxxx"></script>
+
+	<!-- Setup Sub-Resource-Intergrity Hash: SRI 'sha-384-xxxxxxxxxxxxxxxxxxxxxxxxxxx' generated on https://srihash.org -->
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/isocroft/browsengine@0.2.3/dist/browsengine.min.js" defer="defer" crossorigin="anonymous" integrity="sha384-50AmebZ/aSgYzSY2QkURfTYvuJObYNWgOQt/OA25oJUYtACZQRk+5Lmq0uyFk4Qw" data-csp-nonce="xxxxxxxxxxxx"></script>
 
 	<!-- SEE: https://jhildenbiddle.github.io/css-vars-ponyfill/#/ [Polyfill for CSS `var(...)` function for custom variables] -->
 	<!-- TODO: Remember to replace this with your own updated implementation of `css-vars-polyfill` that contains perf improvements, fixes and the `parseRuntime: true` config option -->
