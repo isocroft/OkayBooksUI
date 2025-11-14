@@ -115,11 +115,11 @@ input[type=number]::-webkit-inner-spin-button {
     display: none;
 }
 
-input[type=number] {
+.gecko input[type=number] {
     -moz-appearance: textfield;
 }
 
-input[type=search] {
+.gecko input[type=search] {
     -moz-appearance: none;
 }
   
@@ -135,17 +135,20 @@ table {
 }
 
 /* Safari - solving issue when using user-select:none on the <body> text input doesn't working */
-input, textarea {
+.yes-webkit input,
+.yes-webkit textarea,
+.yes-blink input,
+.yes-blink textarea {
     -webkit-user-select: auto;
 }
 
 /* revert the 'white-space' property for textarea elements on Safari */
-textarea {
+.yes-webkit.safari textarea {
     white-space: revert;
     resize: none;
 }
 
-/* minimum style to allow to style meter element */
+/* minimum style to allow for meter element */
 meter {
     -webkit-appearance: revert;
     appearance: revert;
@@ -181,15 +184,16 @@ meter {
     }
 
     /* fix the feature of 'hidden' attribute.
-    display:revert; revert to element instead of attribute */
+    `display: revert;` revert to element instead of attribute */
     :where([hidden]) {
         display: none;
     }
 
-    /* revert for bug in Chromium browsers
+    /* revert for bug in Chromium and Chromium-like browsers
     - fix for the content editable attribute will work properly.
-    - webkit-user-select: auto; added for Safari in case of using user-select:none on wrapper element */
-    :where([contenteditable]:not([contenteditable="false"])) {
+    - `webkit-user-select: auto;` added for Safari in case of using user-select:none on wrapper element */
+    .yes-webkit :where([contenteditable]:not([contenteditable="false"])),
+	.yes-blink :where([contenteditable]:not([contenteditable="false"])) {
         -moz-user-modify: read-write;
         -webkit-user-modify: read-write;
         overflow-wrap: break-word;
@@ -197,8 +201,9 @@ meter {
         -webkit-user-select: auto;
     }
 
-    /* apply back the draggable feature - exist only in Chromium and Safari */
-    :where([draggable="true"]) {
+    /* apply back the draggable feature - exists only in Chromium and Safari */
+    .yes-webkit :where([draggable="true"]),
+	.yes-blink :where([draggable="true"]) {
         -webkit-user-drag: element;
     }
 
