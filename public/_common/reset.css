@@ -59,7 +59,7 @@ body {
     display: inherit;
 }
 
-/* Preferred box-sizing value */
+/* Use preferred box-sizing value */
 *,
 *::before,
 *::after {
@@ -68,7 +68,7 @@ body {
     -webkit-box-sizing: border-box;
 }
 
-/* Reapply the pointer cursor for anchor tags */
+/* Reapply the pointer cursor for anchor tags and button tags */
 a, button {
     cursor: revert;
 }
@@ -170,6 +170,27 @@ meter {
 /* remove default dot (•) sign */
 ::marker {
     content: initial;
+}
+
+[data-scroll-area-wrapper] {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+[data-scroll-area-wrapper]::-webkit-scrollbar {
+  display: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  * {
+    scroll-behavior: smooth;
+  }
+}
+
+[data-content-panel] {
+  min-width: 100%;
+  display: table;
 }
 
 @supports selector(:where(a)) and (all: unset) {
