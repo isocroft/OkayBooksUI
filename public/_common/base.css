@@ -255,14 +255,14 @@
 
 .static\:flex-\[shrink-to-fit\] {
     flex: 1 1 auto;
-    position: static;
+    position: static !important;
     /* shrink-to-fit trigger => */display: inline-flex;
     min-height: 0;
     min-width: fit-content;
 }
 
 .static\:block-\[shrink-to-fit\] {
-    position: static;
+    position: static !important;
     /* shrink-to-fit trigger => */display: inline-block;
     min-height: 0;
     min-width: fit-content;
