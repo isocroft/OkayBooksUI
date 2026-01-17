@@ -1,3 +1,5 @@
+@charset "UTF-8";
+
 /**!
   * Main Section Components
   */
@@ -13,7 +15,7 @@
 
 @media (resolution: 2dppx) {
   /* Styles for high-resolution (Retina) displays */
-  body {
+  body[aria-screen-view="retina"] {
     font-size: 1rem;
   }
 }

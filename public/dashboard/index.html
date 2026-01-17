@@ -11,7 +11,7 @@
 
     <!-- SEE: https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
     <!-- Setup Content-Security-Policy: CSP 'sha-256-xxxxxxxxxxxxxxxxxxxxxxxxxx' generated on https://report-uri.com/home/hash -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src https://unpkg.com 'self' 'unsafe-hashes' 'sha256-F1noxsLOnJhyRSgc0zu5JgzoLjG2BBMaXaSG24k2mRM=' 'sha256-nfqxNUHyQH25sks994p99ZX7KIuoDZF+1Lhi3u0Qp1o=' 'sha256-hWC45CyizdmsZ60aJZVy86TxZR3DwVpwjTKVgaqB7P0=' 'sha256-3YN0wDiU/mNlaFTMeLZ7/SEie/LqY05buNjl2V1SXm4=' 'sha256-tllSXfe/rEPzjWstCF79xzGhtj0XYnqC5MkWnQioqw0='; style-src 'self' https://unpkg.com https://fonts.googleapis.com; img-src 'self'; font-src https://fonts.gstatic.com; require-trusted-types-for 'script'; trusted-types dompurify puritan">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src https://unpkg.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net 'self' 'nonce-E4c4WBD2t9CuYLlFsKNlUg' 'unsafe-hashes' 'sha256-F1noxsLOnJhyRSgc0zu5JgzoLjG2BBMaXaSG24k2mRM=' 'sha256-nfqxNUHyQH25sks994p99ZX7KIuoDZF+1Lhi3u0Qp1o=' 'sha256-hWC45CyizdmsZ60aJZVy86TxZR3DwVpwjTKVgaqB7P0=' 'sha256-3YN0wDiU/mNlaFTMeLZ7/SEie/LqY05buNjl2V1SXm4=' 'sha256-tllSXfe/rEPzjWstCF79xzGhtj0XYnqC5MkWnQioqw0='; style-src https://unpkg.com https://fonts.googleapis.com 'self' 'unsafe-hashes' 'sha256-F5QNGYMr+TJZ0JqgjHp8Bs58STA3rq7LesMhXzINk84='; img-src 'self'; font-src https://fonts.gstatic.com; require-trusted-types-for 'script'; trusted-types dompurify puritan">
 
     <!-- Setup HTTP/2 preconnect to prioritize eager-connection over the network for staic resources -->
     <link rel="preconnect" href="https://unpkg.com">
@@ -21,20 +21,24 @@
     <!-- Setup mobile-optimized viewport directives -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js" async crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js" defer="defer" crossorigin="anonymous"></script>
 
-    <!-- Setup HTTP/2 preload to prioritize eager-loading of CSS -->
+    <!-- Setup HTTP/2 preload to prioritize eager-loading of all CSS -->
     <link rel="preload" href="../_common/reset.css" as="style" onload="this.rel='stylesheet'">
     <link rel="preload" href="../_common/base.css" as="style" onload="this.rel='stylesheet'">
+    <link rel="preload" href="./assets/css/carousel.css" as="style" onload="this.rel='stylesheet'">
     <link rel="preload" href="../_common/components.css" as="style" onload="this.rel='stylesheet'">
     <link rel="preload" href="https://unpkg.com/flickity@2/dist/flickity.min.css" as="style" onload="this.rel='stylesheet'" crossorigin="anonymous">
-    <link rel="preload" href="./assets/css/carousel.css" as="style" onload="this.rel='stylesheet'">
     <link rel="preload" href="./assets/css/listings.css" as="style" onload="this.rel='stylesheet'">
 
-    <!-- Setup HTTP/2 preload to prioritize eager-loading of JavaScript -->
+    <!-- Setup HTTP/2 preload to prioritize eager-loading of some JavaScript -->
     <link rel="preload" href="https://unpkg.com/matchmedia-polyfill@0.3.2/matchMedia.js" as="script">
     <link rel="preload" href="https://unpkg.com/matchmedia-polyfill@0.3.2/matchMedia.addListener.js" as="script">
     <link rel="preload" href="../_common/components.js" as="script" />
+
+    <!-- Setup HTTP/2 preload to prioritize eager-loading of some Images -->
+    <link rel="preload" href="./assets/images/png/big-magic.png" as="image" fetchpriority="high">
+    <link rel="preload" href="./assets/images/png/effective-python.png" as="image" fetchpriority="high">
 
     <title>Okay Book Club - Admin</title>
 
@@ -55,7 +59,7 @@
     <!-- Identifies the author of this HTML document -->
     <link rel="author" href="https://isocroft.vercel.app/about">
 
-    <!-- If JavaScript isn't enabled, opt for degraded experience by blocking the Critical Rendering Path by downloading CSS immediately -->
+    <!-- If JavaScript isn't enabled, opt for degraded experience by blocking the Critical Rendering Path by downloading CSS immediately while asking user to re-enable JavaScript -->
     <noscript><link rel="stylesheet" href="../_common/reset.css"></noscript>
     <noscript><link rel="stylesheet" href="../_common/base.css"></noscript>
     <noscript><link rel="stylesheet" href="../_common/components.css"></noscript>
@@ -63,7 +67,7 @@
     <noscript><link rel="stylesheet" href="./assets/css/listings.css"></noscript>
     <noscript><link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css" crossorigin="anonymous"></noscript>
 
-    <script src="../_common/components.js"></script>
+    <script src="../_common/components.js" defer="defer"></script>
     <!-- Get Google Fonts file -->
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,400;0,500;0,700;1,400;1,700&display=swap" rel="stylesheet">
 
@@ -88,14 +92,54 @@
     <link media="screen and (min-width: 890px)" rel="stylesheet" href="./assets/css/screens/desktop.css">
     <!-- Enhance the Critical Rendering Path by deprioritizing mobile styles for devices they aren't mean for -->
     <link media="screen and (min-width: 320px) and (max-width: 767px)" rel="stylesheet" href="./assets/css/screens/mobile.css">
+    <!-- Enhance the Critical Rendering Path by deprioritizing tablet styles for devices they aren't mean for -->
+    <link media="screen and (min-width: 768px) and (max-width: 889px)" rel="stylesheet" href="./assets/css/screens/tablet.css">
 
     <!-- Load Browser Tab/Window Icon -->
     <link rel="icon" href="./assets/images/favicon.ico" type="image/x-icon">
+    <!-- Googles' Free API for creating a favicon for any site -->
+    <!-- <link rel="icon" href="https://www.google.com/s2/favicons?sz=96&domain_url=okaybooks.com" type="image/x-icon"> -->
+    <!-- <img src="https://www.google.com/s2/favicons?sz=96&domain_url=okaybooks.com"> -->
+
+    <noscript>
+      <!-- If JavaScript isn't enabled, block the entire screen with a message urging user to re-enable JavaScript -->
+      <style type="text/css" data-hash="'sha256-F5QNGYMr+TJZ0JqgjHp8Bs58STA3rq7LesMhXzINk84='">
+        body {
+          line-height: normal;
+          margin: 0;
+          padding: 0;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: center;
+          height: 100vh;
+        }
+
+        body > [id="root"] {
+          opacity: 0;
+          visibility: hidden;
+        }
+
+        body::before {
+          display: inline-block;
+          background-color: white;
+          z-index: 100;
+          width: 100%;
+          content: "Please re-enable Javascript on your browser to continue!";
+          color: black;
+          font-weight: bolder;
+          font-size: 28px;
+          text-align: center;
+        }
+      </style>
+    </noscript>
+    <script src="https://cdn.jsdelivr.net/npm/modernizr@3.13.1/lib/cli.min.js" async="async" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/gh/isocroft/browsengine@0.2.3/dist/browsengine.min.js" async="async" crossorigin="anonymous"></script>
   </head>
   <body>
     <div id="root" class="mask-overflow" aria-label="Page">
       <header class="display-flex flex-aligned-center flex-spaced-between floating-banner" aria-label="Page Banner">
-        <section id="branding" class="display-flex flex-aligned-center floating-banner_branding-box" role="region" aria-label="Branding" tabindex="-1">
+        <section id="branding" role="presentation" class="display-flex flex-aligned-center floating-banner_branding-box" role="region" aria-label="Branding" tabindex="-1">
           <button id="menu-trigger-button" aria-haspopup="true" aria-controls="menu" aria-hidden="true" tabindex="0" class="menu-control mask-overflow menu-trigger">
             <img src="./assets/images/svg/hamburger.svg" alt="page-menu-trigger" tabindex="-1" id="menu-trigger-icon">
           </button>
@@ -160,7 +204,7 @@
         </section>
       </header>
       <section class="display-flex full-height mask-overflow fixed-content-area" role="region" aria-label="Page Content Area">
-        <aside id="side-bar" class="flex-fixed-[+350] mask-overflow full-height fixed-content-area_side-bar" role="menu" aria-labelledby="menu-trigger-button">
+        <aside id="side-bar" class="flex-fixed-[+350] full-height fixed-content-area_side-bar border-boxed display-block" role="menu" aria-labelledby="menu-trigger-button">
           <div class="allow-overflow full-height" id="content-area-container">
             <div class="menu-trigger-drawer">
               <button class="display-block mask-overflow" id="dismiss-menu-trigger">
@@ -168,7 +212,6 @@
               </button>
             </div>
             <header class="fixed-content-area_side-bar-heading" role="heading" aria-level="3" aria-label="Side Bar Menu Heading">
-              
               <div class="fixed-content-area_side-bar-branding" role="region">
                 <div role="group" class="display-flex flex-aligned-center flex-gap-[x15] branding" tabindex="-1">
                   <div class="branding-logo-wrapper" tabindex="0" role="figure" aria-labelledby="branding_caption">
@@ -181,8 +224,8 @@
                 </div>
               </div>
             </header>
-            <nav class="fixed-content-area_side-bar-navigation" role="group" aria-label="Side Bar Navigation">
-              <div class="fixed-content-area_side-bar-sub-menu" role="region" aria-label="Basic Sub Menu">
+            <nav class="fixed-content-area_side-bar-navigation" role="region" aria-label="Side Bar Navigation">
+              <div class="fixed-content-area_side-bar-sub-menu" role="group" aria-label="Basic Sub Menu">
                 <ul class="" role="menubar" tabindex="-1">
                   <li class="display-flex" tabindex="-1" role="presentation">
                     <a class="currently-highlighted" role="menuitem" aria-haspopup="false" tabindex="0" href="/#">Home</a>
@@ -196,7 +239,7 @@
                 </ul>
               </div>
 
-              <div class="fixed-content-area_side-bar-sub-menu" role="region" aria-label="Library Stock Sub Menu">
+              <div class="fixed-content-area_side-bar-sub-menu" role="group" aria-label="Library Stock Sub Menu">
                 <h4 id="explore_decription" class="">Explore</h4>
                 <ul class="" role="menubar" tabindex="-1" aria-describedby="explore_decription">
                   <li class="display-flex flex-aligned-center flex-spaced-between" tabindex="-1" data-count="273" role="presentation">
@@ -211,7 +254,7 @@
                 </ul>
               </div>
 
-              <div class="fixed-content-area_side-bar-sub-menu" role="region" aria-label="Inventory Records Sub Menu">
+              <div class="fixed-content-area_side-bar-sub-menu" role="group" aria-label="Inventory Records Sub Menu">
                 <h4 id="books_description" class="">My Books</h4>
                 <ul class="" role="menubar" tabindex="-1" aria-describedby="books_description">
                   <li class="display-flex flex-aligned-center flex-spaced-between" tabindex="-1" data-count="3" role="presentation">
@@ -248,8 +291,8 @@
         </aside>
         <main id="main-pane" class="flex-fluid mask-overflow full-height" aria-label="Page Content View">
           <div class="allow-overflow full-height" id="content-view-container">
-            <section class="panel" role="region" aria-label="Featured Books Carousel Panel">
-              <h3 class="panel-heading">featured books</h3>
+            <section class="panel" role="region" aria-labelledby="carousel-panel-heading">
+              <h3 class="panel-heading" id="carousel-panel-heading">featured books</h3>
               <div class="carousel" role="presentation" data-flickity='{
                 "arrowShape": {
                   "x0": 10,
@@ -259,7 +302,9 @@
                 },
                 "draggable": true,
                 "wrapAround": true,
-                "lazyLoad": true
+                "lazyLoad": true,
+                "adaptiveHeight": true,
+                "rightToLeft": true
               }'>
                 <div class="carousel-cell">
                   <img data-flickity-lazyload="./assets/images/png/big-magic.png" src="./assets/images/png/big-magic.png" width="220" height="330" />
@@ -300,8 +345,9 @@
           </div>
         </main>
       </section>
-      <div class="mobile-overlay" id="menu-shade"></div>
+      <div class="mobile-flyout-menu-overlay" id="menu-shade"></div>
     </div>
+    
     <script src="https://unpkg.com/matchmedia-polyfill@0.3.2/matchMedia.js"></script>
     <script src="https://unpkg.com/matchmedia-polyfill@0.3.2/matchMedia.addListener.js"></script>
     <script src="https://unpkg.com/object-fit-polyfill@0.1.0/dist/object-fit-polyfill.js" async></script>
@@ -448,6 +494,9 @@
           "";
         };
       })({ parser: DOMParser, serializer: XMLSerializer });
+    </script>
+    <script id="dynamically-generated-script-from-server" type="text/javascript" nonce="E4c4WBD2t9CuYLlFsKNlUg">
+
     </script>
   </body>
 </html>

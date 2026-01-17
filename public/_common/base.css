@@ -1,14 +1,23 @@
+@charset "UTF-8";
+
 .display-block {
     display: block;
 }
+  
+.display-inline-block {
+    display: inline-block;
+}
 
 .display-flex {
-    display: box;
     display: -ms-flex;
     display: -moz-flex;
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
+}
+  
+.display-inline-flex {
+    display: inline-flex;
 }
 
 .flex-row,
@@ -69,6 +78,62 @@
    justify-content: space-between;
 }
 
+.flex-spaced-centric {
+    -webkit-box-pack: center;
+    -moz-box-pack: center;
+    -ms-box-pack: center;
+    box-pack: center;
+
+    -webkit-justify-content: center;
+	-moz-justify-content: center;
+	-ms-justify-content: center;
+   justify-content: center;
+}
+
+.flex-spaced-around {
+    -webkit-box-pack: justify;
+    -moz-box-pack: justify;
+    -ms-box-pack: justify;
+    box-pack: justify;
+  
+    -ms-flex-pack: distribute; /* IE10 equivalent (close to space-around) */
+
+    -webkit-justify-content: space-around;
+	-moz-justify-content: space-around;
+	-ms-justify-content: space-around;
+   justify-content: space-around;
+}
+
+.flex-spaced-shiftleft {
+    -webkit-box-pack: start;
+    -moz-box-pack: start;
+    -ms-box-pack: start;
+    box-pack: start;
+  
+    -webkit-justify-content: flex-start;
+	-moz-justify-content: flex-start;
+	-ms-justify-content: flex-start;
+   justify-content: flex-start;
+}
+
+.flex-spaced-shiftright {
+    -webkit-box-pack: end;
+    -moz-box-pack: end;
+    -ms-box-pack: end;
+    box-pack: end;
+  
+    -webkit-justify-content: flex-end;
+	-moz-justify-content: flex-end;
+	-ms-justify-content: flex-end;
+   justify-content: flex-end;
+}
+
+/* `.flex-flexible`
+
+- Where some children should be flexible and others should keep natural size
+
+- When mixing fixed-size and flexible items in the same flex container
+*/
 .flex-flexible {
   flex: auto; /* Override back to default */
   -webkit-flex: auto;
@@ -76,8 +141,18 @@
   -ms-flex: auto;
 }
 
+.flex-flexible-varied-parts {
+  min-width: max-content;
+  min-height: 0;
+  flex: 1;
+  -webkit-flex: 1;
+  -moz-flex: 1;
+  -ms-flex: 1;
+}
+
 .flex-flexible-equal-parts {
   min-width: fit-content;
+  min-height: 0;
   flex: 1;
   -webkit-flex: 1;
   -moz-flex: 1;
@@ -85,19 +160,38 @@
 }
 
 .flex-fixed-\[\+350\] {
+    -webkit-flex-basis: 21.875rem;
     flex-basis: 21.875rem;
+    min-height: 0;
 }
 
 .flex-fixed-collaspable {
     -webkit-flex-shrink: 0;
     flex-shrink: 0;
-    flex-basis: auto; /* Override back to default */
+    flex-basis: auto !important; /* Override back to default */
     min-width: 0;
+}
+
+.flex-fixed-collaspable-tweened {
+    -webkit-flex-shrink: 0;
+    flex-shrink: 0;
+    flex-basis: auto !important; /* Override back to default */
+    min-width: 0;
+    will-change: width;
+    transition: flex-basis 0.3s ease, width 0.3s ease;
+}
+
+.flex-fixed-collaspable-tweened.collapsed {
+    flex-basis: 0 !important;
+    width: 0;
+    padding: 0;
+    overflow: hidden;
 }
 
 .flex-fluid {
     min-width: 0;
-    flex-basis: auto; /* Override back to default */
+    height: auto;
+    flex-basis: auto !important; /* Override back to default */
     flex: 1;
     -webkit-flex: 1;
 	-moz-flex: 1;
@@ -105,9 +199,9 @@
 }
 
 /* You can add a padding to this flex item and it won't expand oddly */
-.flex-fluid-\[box-sized\] {
-    flex-basis: auto;
-    min-width: 0;
+.flex-fluid-\[box-sized\],
+.flex-fluid-fill-available-\[box-sized\] {
+    min-height: 0;
     width: fit-content;
     flex: 1;
     -webkit-flex: 1;
@@ -116,13 +210,21 @@
     box-sizing: border-box;
 }
 
+.flex-fluid-\[box-sized\] {
+    min-width: 0;
+}
+
+.flex-fluid-fill-available-\[box-sized\] {
+    min-width: 100%;
+}
+
 .flex-gap-\[x15\] {
     gap: 0.9375rem;
 }
 
 .full-width {
   width: 100%;
-  max-width: none; /* Override back to default */
+  max-width: none !important; /* Override back to default */
 }
 
 .full-height {
@@ -141,8 +243,9 @@
     margin-left: 1.25rem;
 }
 
-.text-indext-\[x3\] {
-    text-indent: 0.19rem;
+.text\:block-\[shink-to-zero\] {
+    min-width: 0;
+    width: max-content;
 }
 
 .all\:block\[shrink-to-fit\] {
@@ -172,14 +275,20 @@
     min-width: fit-content;
 }
 
-.mask-overflow {
-    overflow: hidden;
+.border-boxed {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
 }
 
-.text-compact.mask-overflow {
-    text-overflow: ellipsis;
-    vertical-align: middle;
-    white-space: pre-line;
+.padding-boxed {
+  box-sizing: padding-box;
+  -moz-box-sizing: padding-box;
+  -webkit-box-sizing: padding-box;
+}
+
+.mask-overflow {
+    overflow: hidden;
 }
 
 .allow-overflow {
@@ -194,32 +303,110 @@
     position: absolute;
 }
 
-.panel {
-    padding-left: 2.563rem;
-    padding-right: 2.563rem;
+.outline-none {
+    outline: none;
 }
 
-.panel-heading {
-    font-size: 0.875rem;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    letter-spacing: 0.188rem;
-    text-transform: uppercase;
-    padding-bottom: 0.875rem;
+.bg-transparent {
+    background-color: transparent;
 }
 
-.panel .panel-heading {
-    margin-top: 1.688rem;
-    margin-bottom: 1.563rem;
-    border-bottom: 0.063rem solid var(--color-border-primary);
+.font-bold { font-weight: 700; }
+.font-semibold { font-weight: 600; }
+.font-medium { font-weight: 500; }
+
+.text-uppercase { text-transform: uppercase; }
+.text-lowercase { text-transform: lowercase; }
+.text-capitalize { text-transform: capitalize; }
+
+
+.text-indext-\[x3\] {
+    text-indent: 0.19rem;
 }
 
-button {
-    touch-action: auto;
-    -ms-touch-action: auto;
-    user-select: none;
-    -moz-user-select: -moz-none;
-    -webkit-user-select: none;
-    cursor: pointer;
+.text-clamped-exact,
+.text-clamped-normal,
+.text-clamped-fitted,
+.text-branded {
+  text-overflow: ellipsis;
+}
+
+.text-v-aligned-center,
+.text-clamped-normal {
+  vertical-align: middle;
+}
+
+.text-clamped-fitted,
+.text-clamped-normal {
+  display: -webkit-box;
+  display: -webkit-inline-box;
+  display: inline-flex;
+}
+
+.text-clamped-fitted {
+  -webkit-box-orient: vertical;
+  -moz-box-orient: vertical;
+  box-orient: vertical;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.text-clamped-exact {
+  white-space: nowrap;
+}
+
+.text-clamped-fitted {
+  white-space: pre-line;
+}
+
+.text-clamped-normal {
+  white-space: normal;
+}
+
+.text-clamped-fitted.mask-overflow.lines-\[x2\],
+.text-clamped-normal.mask-overflow.lines-\[x2\] {
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+}
+
+.text-clamped-fitted.mask-overflow.lines-\[x3\],
+.text-clamped-normal.mask-overflow.lines-\[x3\] {
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+}
+
+.text-clamped-fitted.mask-overflow.lines-\[x5\],
+.text-clamped-normal.mask-overflow.lines-\[x5\] {
+  -webkit-line-clamp: 5;
+  line-clamp: 5;
+}
+
+.text-clamped-fitted.gutter-top-md,
+.text-clamped-normal.gutter-top-md {
+  position: relative;
+  top: 8px;
+}
+
+.text-branded {
+  text-transform: capitalize;
+  white-space: nowrap;
+}
+
+button, [role="button"] {
+  touch-action: auto;
+  -ms-touch-action: auto;
+  user-select: none;
+  -moz-user-select: -moz-none;
+  -webkit-user-select: none;
+  cursor: pointer;
+}
+
+button.display-inline-block {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+button.display-inline-flex {
+  display: inline-flex;
+  align-items: center;
 }

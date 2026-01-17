@@ -1,3 +1,5 @@
+@charset "UTF-8";
+
 /**!
   * Main Section Components
   */
@@ -6,7 +8,7 @@
 /*! Device Details Section */
 @media (any-pointer: coarse) {
   /*  Styles for pointer devices that have limited pointing accuracy */
-  input[type="checkbox"] {
+  body[aria-touch-capable="true"] input[type="checkbox"] {
     appearance: none;
     width: 30px;
     height: 30px;
@@ -36,7 +38,7 @@
 /* Combining resolution with other media features */
 @media (max-width: 766px) and (resolution: 2dppx) {
   /* Styles for tablets or smaller screens with high-resolution */
-  body {
+  body:not([aria-view-mode*="desktop"]) {
     font-size: 0.9rem;
   }
 }
