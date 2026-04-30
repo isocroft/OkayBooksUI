@@ -55,6 +55,8 @@ html .format-inline-x-custom-rig {
 
 
 
+
+
 /*! Logo + Brand + Tagline */
 
 .menu-control {
@@ -246,7 +248,7 @@ html .format-inline-x-custom-rig {
   display: inline-flex;
 }
 
-.floating-banner_user-controls div:first-child {
+.floating-banner_user-controls .floating-banner_user-search-trigger {
   display: none;
 }
 
@@ -305,6 +307,86 @@ html .format-inline-x-custom-rig {
 .image-size-medium .avatar-image {
   max-width: 3.125rem;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Switch container */
+
+[role="presentation"] .theme-switch {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Switch styling */
+
+[role="presentation"] .switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 26px;
+}
+
+[role="presentation"] .switch input {
+  display: none;
+}
+
+/* Track */
+
+[role="presentation"] .slider {
+  position: absolute;
+  cursor: pointer;
+  background-color: #ccc;
+  border-radius: 34px;
+  inset: 0;
+  transition: 0.3s;
+}
+
+/* Thumb */
+
+[role="presentation"] .slider::before {
+  content: "";
+  position: absolute;
+  height: 20px;
+  width: 20px;
+  left: 3px;
+  top: 3px;
+  background-color: white;
+  border-radius: 50%;
+  transition: 0.3s;
+}
+
+/* Checked state */
+
+[role="presentation"] input:checked + .slider {
+  background-color: #4f46e5;
+}
+
+[role="presentation"] input:checked + .slider::before {
+  transform: translateX(24px);
+}
+
+
+
 
 
 

@@ -1,30 +1,51 @@
 <!DOCTYPE html>
 <html lang="en" class="no-js" mozdisallowselectionprint moznomarginboxes>
   <head>
+    <!-- Character-set encoding for this page is specified -->
     <meta charset="UTF-8">
+    <!-- DNS prefetch hints for this page are turned on -->
+    <meta http-equiv="x-dns-prefetch-control" content="on">
 
     <!-- Identifies one of the software packages used to generate the document -->
     <meta name="generator" content="VS Code + Manual Build">
 
     <!-- Web crawler instructions -->
     <meta name="robots" content="noimageindex, noarchive, nofollow">
+    <meta name="googlebot" content="noimageindex, noarchive, nofollow">
 
     <!-- SEE: https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
     <!-- Setup Content-Security-Policy: CSP 'sha-256-xxxxxxxxxxxxxxxxxxxxxxxxxx' generated on https://report-uri.com/home/hash -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src https://unpkg.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net 'self' 'nonce-E4c4WBD2t9CuYLlFsKNlUg' 'unsafe-hashes' 'sha256-bSAh0P67OeSsSds2xzF5bVChsj+0jEAeRwh2nVO1fLs=' 'sha256-F1noxsLOnJhyRSgc0zu5JgzoLjG2BBMaXaSG24k2mRM=' 'sha256-nfqxNUHyQH25sks994p99ZX7KIuoDZF+1Lhi3u0Qp1o=' 'sha256-hWC45CyizdmsZ60aJZVy86TxZR3DwVpwjTKVgaqB7P0=' 'sha256-3YN0wDiU/mNlaFTMeLZ7/SEie/LqY05buNjl2V1SXm4=' 'sha256-mkPyfZ3JxZLyWhMa/pVhq0wrvsbQPFblCAVnhTpC7GU='; style-src https://unpkg.com https://fonts.googleapis.com 'self' 'unsafe-hashes' 'sha256-F5QNGYMr+TJZ0JqgjHp8Bs58STA3rq7LesMhXzINk84='; img-src 'self'; font-src https://fonts.gstatic.com; require-trusted-types-for 'script'; trusted-types dompurify puritan">
+    <!-- NOTE: Add "frame-ancestors 'none';" to HTTP response header for Content-Security-Policy instead as it isn't allowed in <meta> tag -->
+    <meta http-equiv="Content-Security-Policy" content="base-uri 'none'; default-src 'none'; manifest-src 'self'; script-src https://unpkg.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net 'self' 'inline-speculation-rules' 'nonce-E4c4WBD2t9CuYLlFsKNlUg' 'unsafe-hashes' 'sha256-bSAh0P67OeSsSds2xzF5bVChsj+0jEAeRwh2nVO1fLs=' 'sha256-F1noxsLOnJhyRSgc0zu5JgzoLjG2BBMaXaSG24k2mRM=' 'sha256-nfqxNUHyQH25sks994p99ZX7KIuoDZF+1Lhi3u0Qp1o=' 'sha256-hWC45CyizdmsZ60aJZVy86TxZR3DwVpwjTKVgaqB7P0=' 'sha256-3YN0wDiU/mNlaFTMeLZ7/SEie/LqY05buNjl2V1SXm4=' 'sha256-mkPyfZ3JxZLyWhMa/pVhq0wrvsbQPFblCAVnhTpC7GU='; style-src https://unpkg.com https://fonts.googleapis.com 'self' 'unsafe-hashes' 'sha256-F5QNGYMr+TJZ0JqgjHp8Bs58STA3rq7LesMhXzINk84='; img-src 'self'; font-src https://fonts.gstatic.com; child-src https://example.com; upgrade-insecure-requests; require-trusted-types-for 'script'; trusted-types dompurify puritan">
 
     <!-- Setup HTTP/2 preconnect to prioritize eager-connection over TCP for static resources (e.g. .js, .css, .jpg, .png) -->
-    <link rel="preconnect" href="https://unpkg.com" crossorigin>
+    <link rel="preconnect" href="https://unpkg.com" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
 	  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
 	  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 
+    <!-- ... -->
+    <!-- <meta name="next-size-adjust" content=""> -->
+
+    <!-- Manifest file -->
+    <link rel="manifest" href="./assets/manifest.webmanifest">
+    
+    <!-- Apple Mobile Web Metadata -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="OkayBookClub">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- <meta name="apple-mobile-web-app-status-bar-style" content="default"> -->
+    <meta name="theme-color" content="#ffffff">
+
+    <link rel="apple-touch-icon" href="./assets/images/apple-touch-icon.png">
+
+    <!-- Load a .WOFF font file -->
+    <!-- <link rel="preload" href="https://assets.ok-static.com/media/797e433ab948586e-s.p.dbea232f.woff2" as="font" crossorigin="anonymous" type="font/woff2"> -->
+
     <!-- Setup mobile-optimized viewport directives -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- Setup Sub-Resource-Intergrity Hash: SRI 'sha-384-xxxxxxxxxxxxxxxxxxxxxxxxxxx' generated on https://srihash.org -->
-    <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js" defer="defer" crossorigin="anonymous" integrity="sha384-6ma6pGRLjeu6PkX+yOaR0dUGt6OQl9evbv3H2kdLWwIXtUztaQrWUlbRBPVpDH4B"></script>
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover"> -->
 
     <!-- SEE: https://jhildenbiddle.github.io/css-vars-ponyfill/#/ [Polyfill for CSS `var(...)` function for custom variables] -->
     <!-- TODO: Remember to replace this with your own updated implementation of `css-vars-polyfill` that contains perf improvements, fixes and the `parseRuntime: true` config option -->
@@ -42,27 +63,22 @@
     <!-- Setup HTTP/2 preload to prioritize eager-loading of some JavaScript -->
     <link rel="preload" href="https://unpkg.com/matchmedia-polyfill@0.3.2/matchMedia.js" as="script">
     <link rel="preload" href="https://unpkg.com/matchmedia-polyfill@0.3.2/matchMedia.addListener.js" as="script">
-    <link rel="preload" href="../_common/components.js" as="script" />
+    <link rel="preload" href="../_common/components.js" as="script">
 
     <!-- Setup HTTP/2 preload to prioritize eager-loading of some Images -->
     <link rel="preload" href="./assets/images/png/big-magic.png" as="image" fetchpriority="high">
     <link rel="preload" href="./assets/images/png/effective-python.png" as="image" fetchpriority="high">
 
-    <title>Okay Book Club - Admin</title>
+    <title>OkayBookClub - Admin</title>
 
     <!-- Indicates if devices should try to interpret various formats and make actionable links out of them. -->
-    <!-- For example this meta tag controls if telephone numbers on mobile that can be clicked to dial or not.-->
+    <!-- For example this meta tag controls if telephone numbers on mobile can be clicked to dial or not.-->
     <meta name="format-detection" content="telephone=no">
 
     <!-- SEE: https://metatags.netlify.app/ -->
     <!-- ! Page description details ! -->
     <meta name="description" content="Okay book online club house">
     <meta name="author" content="Ifeora Okechukwu (isocroft@gmail.com)">
-
-    <!-- Apple Mobile Web Metadata -->
-    <meta name="apple-mobile-web-app-status-bar-style" content="default">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="theme-color" content="#ffffff">
 
     <!-- Identifies the author of this HTML document -->
     <link rel="author" href="https://isocroft.vercel.app/about">
@@ -75,7 +91,24 @@
     <noscript><link rel="stylesheet" href="./assets/css/listings.css"></noscript>
     <noscript><link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css" crossorigin="anonymous"></noscript>
 
-    <script src="../_common/components.js" defer="defer"></script>
+    <!-- Enhance the Critical Rendering Path by deprioritizing print media styles for devices they aren't mean for -->
+    <link media="print" rel="stylesheet" href="../_common/print.css">
+
+    <!-- Enhance the Critical Rendering Path by deprioritizing desktop styles for devices they aren't mean for -->
+    <link media="screen and (min-width: 890px)" rel="stylesheet" href="./assets/css/screens/desktop.css">
+    <!-- Enhance the Critical Rendering Path by deprioritizing mobile styles for devices they aren't mean for -->
+    <link media="screen and (min-width: 320px) and (max-width: 767px)" rel="stylesheet" href="./assets/css/screens/mobile.css">
+    <!-- Enhance the Critical Rendering Path by deprioritizing tablet styles for devices they aren't mean for -->
+    <link media="screen and (min-width: 768px) and (max-width: 889px)" rel="stylesheet" href="./assets/css/screens/tablet.css">
+
+    <!-- Trying to detect whether the browser loading this page has support for ES modules and dynamic import for ES modules -->
+    <script nonce="E4c4WBD2t9CuYLlFsKNlUg">window.noModuleLoading = false;window.dynamicImportSupported = false;</script>
+    <script nonce="E4c4WBD2t9CuYLlFsKNlUg" nomodule="">window.noModuleLoading = true;</script>
+    <script type="module" nonce="E4c4WBD2t9CuYLlFsKNlUg" nomodule="">try{import("").catch(()=>{})}catch(t){}window.dynamicImportSupported=!0;</script>
+
+    <!-- Setup Sub-Resource-Intergrity Hash: SRI 'sha-384-xxxxxxxxxxxxxxxxxxxxxxxxxxx' generated on https://srihash.org -->
+    <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js" defer="defer" crossorigin="anonymous" integrity="sha384-6ma6pGRLjeu6PkX+yOaR0dUGt6OQl9evbv3H2kdLWwIXtUztaQrWUlbRBPVpDH4B"></script>
+
     <!-- Get Google Fonts file -->
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,400;0,500;0,700;1,400;1,700&display=swap" rel="stylesheet">
 
@@ -92,16 +125,6 @@
       */
       !function(n){"use strict";n.loadCSS||(n.loadCSS=function(){});var o=loadCSS.relpreload={};if(o.support=function(){var e;try{e=n.document.createElement("link").relList.supports("preload")}catch(t){e=!1}return function(){return e}}(),o.bindMediaToggle=function(t){var e=t.media||"all";function a(){t.addEventListener?t.removeEventListener("load",a):t.attachEvent&&t.detachEvent("onload",a),t.setAttribute("onload",null),t.media=e}t.addEventListener?t.addEventListener("load",a):t.attachEvent&&t.attachEvent("onload",a),setTimeout(function(){t.rel="stylesheet",t.media="only x"}),setTimeout(a,3e3)},o.poly=function(){if(!o.support())for(var t=n.document.getElementsByTagName("link"),e=0;e<t.length;e++){var a=t[e];"preload"!==a.rel||"style"!==a.getAttribute("as")||a.getAttribute("data-loadcss")||(a.setAttribute("data-loadcss",!0),o.bindMediaToggle(a))}},!o.support()){o.poly();var t=n.setInterval(o.poly,500);n.addEventListener?n.addEventListener("load",function(){o.poly(),n.clearInterval(t)}):n.attachEvent&&n.attachEvent("onload",function(){o.poly(),n.clearInterval(t)})}"undefined"!=typeof exports?exports.loadCSS=loadCSS:n.loadCSS=loadCSS}("undefined"!=typeof global?global:this);
     </script>
-
-    <!-- Enhance the Critical Rendering Path by deprioritizing print media styles for devices they aren't mean for -->
-    <link media="print" rel="stylesheet" href="../_common/print.css">
-
-    <!-- Enhance the Critical Rendering Path by deprioritizing desktop styles for devices they aren't mean for -->
-    <link media="screen and (min-width: 890px)" rel="stylesheet" href="./assets/css/screens/desktop.css">
-    <!-- Enhance the Critical Rendering Path by deprioritizing mobile styles for devices they aren't mean for -->
-    <link media="screen and (min-width: 320px) and (max-width: 767px)" rel="stylesheet" href="./assets/css/screens/mobile.css">
-    <!-- Enhance the Critical Rendering Path by deprioritizing tablet styles for devices they aren't mean for -->
-    <link media="screen and (min-width: 768px) and (max-width: 889px)" rel="stylesheet" href="./assets/css/screens/tablet.css">
 
     <!-- Load Browser Tab/Window Icon -->
     <link rel="icon" href="./assets/images/favicon.ico" type="image/x-icon">
@@ -140,12 +163,15 @@
           text-align: center;
         }
       </style>
+      <!-- Keep refreshing the page every 7 seconds as long as JavaScript is disabled -->
+      <meta http-equiv="Refresh" content="7" >
     </noscript>
+
     <!-- INFO: Modernizr is optional here -->
 	  <!-- Setup Sub-Resource-Intergrity Hash: SRI 'sha-384-xxxxxxxxxxxxxxxxxxxxxxxxxxx' generated on https://srihash.org -->
     <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"  crossorigin="anonymous" integrity="sha384-bPV3mA2eo3edoq56VzcPBmG1N1QVUfjYMxVIJPPzyFJyFZ8GFfN7Npt06Zr23qts"></script> -->
     <!-- Setup Sub-Resource-Intergrity Hash: SRI 'sha-384-xxxxxxxxxxxxxxxxxxxxxxxxxxx' generated on https://srihash.org -->
-	  <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/isocroft/browsengine@0.2.3/dist/browsengine.min.js" async="async" crossorigin="anonymous" integrity="sha384-50AmebZ/aSgYzSY2QkURfTYvuJObYNWgOQt/OA25oJUYtACZQRk+5Lmq0uyFk4Qw" data-csp-nonce="xxxxxxxxxxxx"></script>
+	  <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/isocroft/browsengine@0.2.3/dist/browsengine.min.js" async="async" crossorigin="anonymous" integrity="sha384-50AmebZ/aSgYzSY2QkURfTYvuJObYNWgOQt/OA25oJUYtACZQRk+5Lmq0uyFk4Qw" data-csp-nonce="E4c4WBD2t9CuYLlFsKNlUg"></script>
 
   </head>
   <body>
@@ -198,6 +224,7 @@
               <img class="full-width" alt="user-search-magnifying-glass-image" src="./assets/images/svg/search.svg" tabindex="-1">
             </button>
           </div>
+          
           <div class="floating-banner_user-book-library" tabindex="0" role="presentation">
             <span class="display-block" role="figure" tabindex="-1">
               <img alt="user-library-stack-image" src="./assets/images/svg/libraries.svg" tabindex="-1">
@@ -207,6 +234,18 @@
             <span class="display-block" role="figure" tabindex="-1">
               <img alt="user-notification-bell-image" src="./assets/images/svg/notifications.svg" tabindex="-1">
             </span>
+          </div>
+          <div tabindex="0" role="presentation">
+            <div class="theme-switch">
+              <span>☀️</span>
+    
+              <label class="switch">
+                <input type="checkbox" id="themeToggle">
+                <span class="slider"></span>
+              </label>
+    
+              <span>🌙</span>
+            </div>
           </div>
           <div class="left-gutter-[x20] floating-banner_user-avatar-photo" tabindex="0" role="presentation">
             <span class="image-size-medium avatar-wrapper" role="figure" tabindex="-1">
@@ -360,6 +399,7 @@
       <div class="mobile-flyout-menu-overlay" id="menu-shade"></div>
     </div>
     
+    <script type="text/javascript" charset="utf-8" nonce="E4c4WBD2t9CuYLlFsKNlUg">performance && performance.mark && performance.mark('scripts-blocking-start')</script>
     <script type="text/javascript" src="https://unpkg.com/matchmedia-polyfill@0.3.2/matchMedia.js"></script>
     <script type="text/javascript" src="https://unpkg.com/matchmedia-polyfill@0.3.2/matchMedia.addListener.js"></script>
     <script type="text/javascript" src="https://unpkg.com/object-fit-polyfill@0.1.0/dist/object-fit-polyfill.js"></script>
@@ -524,7 +564,146 @@
     </script>
     <!-- Sample of Dynamically-generated script -->
     <script id="dynamically-generated-script-from-server" type="text/javascript" nonce="E4c4WBD2t9CuYLlFsKNlUg">
+      
+      function setCookie(key, value, days) {
+        const today = new Date();
+        today.setTime(today.getTime() + (days < 0 ? days : days * 864e5));
+        const expires = today.toUTCString();
+        window.document.cookie = key + "=" + value + "; expires=" + expires + ";";
+      }
 
+      function getCookie(name) {
+        const cookieJarSection = window.document.cookie
+          .split("; ")
+          .find(row => row.startsWith(name + "=")) || ""
+        
+        if (cookieJarSection !== "") {
+          return cookieJarSection.split("=")[1];
+        }
+
+        return null;
+      }
+
+      const toggle = window.document.getElementById("themeToggle");
+
+      /* Apply saved theme */
+      function applyTheme(theme) {
+        if (theme === "dark") {
+          window.document.body.classList.add("dark-mode");
+          toggle.checked = true;
+        } else {
+          window.document.body.classList.remove("dark-mode");
+          toggle.checked = false;
+        }
+      }
+
+      /* Load cookie on page start */
+      window.addEventListener("load", function () {
+        const savedTheme = getCookie("theme");
+
+        if (savedTheme) {
+          applyTheme(savedTheme);
+        }
+      });
+
+      /* Toggle event */
+      toggle.addEventListener("change", function () {
+        const theme = toggle.checked ? "dark" : "light";
+
+        applyTheme(theme);
+
+        // delete the cookie first
+        setCookie("theme", "", -1);
+
+        // reset the cookie again
+        setCookie("theme", theme, 365);
+      });
     </script>
+    <script type="text/javascript" charset="utf-8" nonce="E4c4WBD2t9CuYLlFsKNlUg">performance && performance.measure && performance.measure('scripts-blocking', 'scripts-blocking-start'), console.log("Perf for script loading: ", "...");</script>
+    <script type="speculationrules" nonce="E4c4WBD2t9CuYLlFsKNlUg" nomodule="">
+      {
+        "prefetch":[
+          {
+            "source": "list",
+            "urls": ["https://okay.local/settings"],
+            "requires": ["anonymous-client-ip-when-cross-origin"],
+            "referrer_policy": "strict-origin"
+          }
+        ]
+      }
+    </script>
+    <script type="application/ld+json" nonce="E4c4WBD2t9CuYLlFsKNlUg">
+      {
+        "sameAs":"https://okay.local/dashboard",
+        "name":"Dashboard",
+        "description":"Okay book online club house",
+        "mainContentOfPage": {
+          "@type": "WebPageElement",
+          "cssSelector": "#root"
+        },
+        "datePublished":"2024-10-21T00:19:02-04:00",
+        "@context":"https://schema.org/",
+        "@type":"WebPage"
+      }
+    </script>
+    <script type="text/javascript" nonce="E4c4WBD2t9CuYLlFsKNlUg">
+      ;(function (win) {
+        /* @HINT: Extract descriptor for `innerHTML` property for any element */
+        var originalDesc_innerHTML = win.Object.getOwnPropertyDescriptor(win.Element.prototype, 'innerHTML');
+        function setter_innerHTML (newInnerHTMLValue) {
+          const self = this
+          let $newInnerHTMLValue = typeof newInnerHTMLValue === "string" ? newInnerHTMLValue : ""
+          $newInnerHTMLValue = newInnerHTMLValue instanceof win.TrustedHTML ? newInnerHTMLValue : $newInnerHTMLValue 
+          const $newTrustedHTMLValue = typeof $newInnerHTMLValue === "string" ? win.Puritan.createHTML($newInnerHTMLValue) : $newInnerHTMLValue
+
+          return originalDesc_innerHTML.set.call(self, $newTrustedHTMLValue)
+        }
+        /* @HINT: Monkey-patch setter for `innerHTML` property for any element */
+        if (originalDesc_innerHTML) {
+          win.Object.defineProperty(win.Element.prototype, 'innerHTML', {
+            configurable: originalDesc_innerHTML.configurable,
+            enumerable: originalDesc_innerHTML.enumerable,
+            get: originalDesc_innerHTML.get,
+            set: setter_innerHTML
+          });
+        } else {
+          originalDesc_innerHTML = { set: Object.prototype.__lookupSetter__.call(win.HTMLElement.prototype, "innerHTML") }
+          win.Object.prototype.__defineSetter__.call(win.HTMLElement.prototype, 'innerHTML', setter_innerHTML)
+        }
+      })(window)
+    </script>
+    <script type="text/javascript" nonce="E4c4WBD2t9CuYLlFsKNlUg">
+      ;(function (win) {
+        /* @HINT: Extract descriptor for `srcdoc` property for `HTMLIFrameElement` element */
+        var originalDesc_srcDoc = win.Object.getOwnPropertyDescriptor(win.HTMLIFrameElement.prototype, 'srcdoc')
+        function setter_Srcdoc (newSrcdocMarkupValue) {
+          const self = this
+          let $newSrcdocMarkupValue = typeof newSrcdocMarkupValue === "string" ? newSrcdocMarkupValue : ""
+          $newSrcdocMarkupValue = newSrcdocMarkupValue instanceof win.TrustedHTML ? newInnerHTMLValue : $newSrcdocMarkupValue 
+          const $newTrustedHTMLSrcdocMarkupValue = typeof $newSrcdocMarkupValue === "string" ? win.Puritan.createHTML($newSrcdocMarkupValue) : $newSrcdocMarkupValue
+
+          return originalDesc_srcDoc.set.call(self, $newTrustedHTMLSrcdocMarkupValue)
+        }
+        /* @HINT: Monkey patch setter for `srcdoc` property for `HTMLIFrameElement` element */
+        if (originalDesc_srcDoc) {
+          win.Object.defineProperty(win.HTMLIFrameElement.prototype, 'srcdoc', {
+            configurable: originalDesc_srcDoc.configurable,
+            enumerable: originalDesc_srcDoc.enumerable,
+            get: originalDesc_srcDoc.get,
+            set: setter_Srcdoc
+          });
+        } else {
+          originalDesc_srcDoc = { set: win.Object.prototype.__lookupSetter__.call(
+            win.HTMLIFrameElement.prototype,
+            'srcdoc'
+          ) }
+          win.Object.prototype.__defineSetter__.call(win.HTMLIFrameElement.prototype, 'srcdoc', setter_Srcdoc)
+        }
+      })(window)
+    </script>
+    <script type="text/javascript" nonce="E4c4WBD2t9CuYLlFsKNlUg">console.log("TTI duration: ", window.performance.timing.domLoading - window.performance.timing.domInteractive);</script>
+    <script type="text/javascript" nonce="E4c4WBD2t9CuYLlFsKNlUg">console.log("TTI -> PLC: ", window.performance.timing.domInteractive - window.performance.timing.domComplete);</script>
+    <span id="thing"></span>
+    <iframe width="0px" height="0px" frameboder="none" scrolling="no" src="https://example.com"></iframe>
   </body>
 </html>

@@ -17,9 +17,117 @@
     --color-background-tertiary: #DDDDDD;
     --color-background-quaternary: #65C100;
     --color-background-quinary: #EEEEEE;
+    --color-foreground-primary: #f1f1f1;
+    --color-muted-foreground: #888888;
+    --color-accent-foreground: #555555;
     --color-svg-fill: #000000;
     --color-svg-stroke: #F5F5F5;
     --color-drop-shadow: #999999;
+    --scroll-border-color: transparent;
+    --scroll-border-style: solid;
+    --scroll-border-size: 0px;
+    --dimension-sm: 8px;
+    --rounded-smx: 4px;
+}
+
+@supports selector(:where(a)) and (all: unset) {
+    *:where(:not(html, iframe, canvas, img, svg, video, audio):not(svg *, symbol *)) {
+        all: unset;
+        display: revert;
+    }
+
+    /* preformatted text - use only for this feature */
+    :where(pre) {
+        all: revert;
+    }
+
+    /* fix the feature of 'hidden' attribute.
+    `display: revert;` revert to element instead of attribute */
+    :where([hidden]) {
+        display: none;
+    }
+
+    /* revert for bug in Chromium and Chromium-like browsers
+    - fix for the content editable attribute will work properly.
+    - `-webkit-user-select: auto;` added for Safari in case of using 
+    `user-select:none` on wrapper element */
+    .yes-webkit :where([contenteditable]:not([contenteditable="false"])),
+	.yes-blink :where([contenteditable]:not([contenteditable="false"])) {
+        -moz-user-modify: read-write;
+        -webkit-user-modify: read-write;
+        overflow-wrap: break-word;
+        -webkit-line-break: after-white-space;
+        line-break: after-white-space;
+        -webkit-user-select: auto;
+        user-select: auto;
+    }
+
+    /* apply back the draggable feature - exists only in Chromium and Safari */
+    .yes-webkit :where([draggable="true"]),
+	.yes-blink :where([draggable="true"]) {
+        -webkit-user-drag: element;
+    }
+
+    /* Revert modal native behavior */
+    :where(dialog:modal) {
+        all: revert;
+    }
+}
+
+@supports selector(:where(a)) {
+    input:where([type='button']),
+    input:where([type='reset']),
+    input:where([type='submit']) {
+        -webkit-appearance: button;
+        background-color: transparent;
+        background-image: none;
+    }
+}
+
+[data-no-scroll-area] {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    overflow: hidden;
+}
+
+/* Standard scrollbar properties (supported in modern Firefox and Chrome 121+) */
+[data-scroll-area] {
+    border-width: var(--scroll-border-size);
+    border-style: var(--scroll-border-style);
+    border-color: var(--scroll-border-color);
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-muted-foreground) var(--color-foreground-primary);
+    overflow: auto;
+}
+
+/* Feature query for legacy WebKit-based browsers */
+@supports selector(::-webkit-scrollbar) {
+      
+    [data-no-scroll-area]::-webkit-scrollbar {
+        display: none;
+    }
+      
+    [data-scroll-area] {
+        -webkit-overflow-scrolling: touch;
+    }
+      
+    [data-scroll-area]::-webkit-scrollbar {
+        width: var(--dimension-sm);
+        height: var(--dimension-sm);
+    }
+
+    [data-scroll-area]::-webkit-scrollbar-track {
+        background-color: var(--color-foreground-primary);
+    }
+      
+    [data-scroll-area]::-webkit-scrollbar-thumb {
+        background-color: var(--color-muted-foreground);
+        border-radius: var(--rounded-smx); /* 4px */
+    }
+      
+    [data-scroll-area]::-webkit-scrollbar-thumb:hover {
+        background-color: var(--color-accent-foreground);
+    }
 }
 
 html {
@@ -29,6 +137,10 @@ html {
     position: relative;
     font-family: 'Ubuntu', system-ui, sans-serif;
     font-size: 16px;
+}
+
+html, :host {
+    -webkit-text-size-adjust: 100%;
     color-scheme: light dark;
 }
   
@@ -45,6 +157,13 @@ body {
     margin: 0;
     padding: 0;
 }
+
+body.dark-mode {
+    --color-background-primary: #121212;
+    --color-text-primary: #ffffff;
+    --color-text-secondary: #fdfefd;
+}
+  
 
 :focus,
 :focus-visible {
@@ -64,7 +183,8 @@ body {
 /* Use preferred box-sizing value */
 *,
 *::before,
-*::after {
+*::after,
+::backdrop {
     box-sizing: border-box;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
@@ -73,6 +193,18 @@ body {
 /* Reapply the pointer cursor for anchor tags and button tags */
 a, button {
     cursor: revert;
+}
+
+button, [role="button"], [role="presentation"] {
+    user-select: none;
+    -moz-user-select: -moz-none;
+    -webkit-user-select: none;
+}
+
+button, [role="button"] {
+    touch-action: auto;
+    -ms-touch-action: auto;
+    cursor: pointer;
 }
 
 /* Remove list styles (bullets/numbers) */
@@ -101,10 +233,36 @@ img, picture, video, canvas, svg {
     display: block;
     max-width: 100%;
 }
+
+/* Old HTML5-shiv + Improvements */
+article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section {
+    display: block;
+}
+  
+abbr, address, article, aside, audio, b, blockquote, body, canvas, caption, cite, code, dd, del, details, dfn, div, dl, dt, em, fieldset, figcaption, figure, footer, form, h1, h2, h3, h4, h5, h6, header, hgroup, html, i, iframe, img, ins, kbd, label, legend, li, mark, menu, nav, object, ol, p, pre, q, samp, section, small, span, strong, summary, table, tbody, td, tfoot, th, thead, time, tr, ul, var, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: transparent;
+}
   
 /* Remove built-in form typography styles */
-input, button, textarea, select {
+input, button, textarea, optgroup, select {
     font: inherit;
+    font-feature-settings: inherit;
+    font-variation-settings: inherit;
+    letter-spacing: inherit;
+    color: inherit;
+    -webkit-tap-highlight-color: transparent;
+}
+
+input[type="checkbox"],
+input[type="radio"],
+input[type="range"],
+progress {
+    accent-color: inherit;
 }
 
 /* Remove built-in styles on input tags */
@@ -136,9 +294,9 @@ table {
     border-collapse: collapse;
 }
 
-/* Safari - solving issue when using user-select:none on the <body> text input doesn't working */
-.yes-webkit input,
-.yes-webkit textarea,
+/* Safari / Chrome - solving issue when using `user-select:none;` on the <body> text input isn't working */
+.yes-webkit.safari input,
+.yes-webkit.safari textarea,
 .yes-blink input,
 .yes-blink textarea {
     -webkit-user-select: auto;
@@ -151,7 +309,7 @@ table {
     resize: none;
 }
 
-/* minimum style to allow for meter element */
+/* minimum style to allow for <meter> element */
 meter {
     -webkit-appearance: revert;
     appearance: revert;
@@ -175,66 +333,27 @@ meter {
     content: initial;
 }
 
-[data-scroll-area-wrapper] {
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-  -webkit-overflow-scrolling: touch;
+pre,
+[data-preserve-text-display] {
+    white-space: pre;
+    tab-size: 4;
 }
 
-[data-scroll-area-wrapper]::-webkit-scrollbar {
-  display: none;
+[data-preserve-text-display="line"] {
+    white-space: pre-line;
+}
+
+[data-preserve-text-display="wrap"] {
+    white-space: pre-wrap;
+}
+
+[data-content-panel] {
+    min-width: 100%;
+    display: table;
 }
 
 @media (prefers-reduced-motion: no-preference) {
   * {
     scroll-behavior: smooth;
   }
-}
-
-[data-content-panel] {
-  min-width: 100%;
-  display: table;
-}
-
-@supports selector(:where(a)) and (all: unset) {
-    *:where(:not(html, iframe, canvas, img, svg, video, audio):not(svg *, symbol *)) {
-        all: unset;
-        display: revert;
-    }
-
-    /* preformatted text - use only for this feature */
-    :where(pre) {
-        all: revert;
-    }
-
-    /* fix the feature of 'hidden' attribute.
-    `display: revert;` revert to element instead of attribute */
-    :where([hidden]) {
-        display: none;
-    }
-
-    /* revert for bug in Chromium and Chromium-like browsers
-    - fix for the content editable attribute will work properly.
-    - `webkit-user-select: auto;` added for Safari in case of using user-select:none on wrapper element */
-    .yes-webkit :where([contenteditable]:not([contenteditable="false"])),
-	.yes-blink :where([contenteditable]:not([contenteditable="false"])) {
-        -moz-user-modify: read-write;
-        -webkit-user-modify: read-write;
-        overflow-wrap: break-word;
-        -webkit-line-break: after-white-space;
-        line-break: after-white-space;
-        -webkit-user-select: auto;
-        user-select: auto;
-    }
-
-    /* apply back the draggable feature - exists only in Chromium and Safari */
-    .yes-webkit :where([draggable="true"]),
-	.yes-blink :where([draggable="true"]) {
-        -webkit-user-drag: element;
-    }
-
-    /* Revert Modal native behavior */
-    :where(dialog:modal) {
-        all: revert;
-    }
 }
