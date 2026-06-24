@@ -2,7 +2,52 @@
 <html lang="en" class="no-js" mozdisallowselectionprint moznomarginboxes>
   <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OkayBookClub - Settings</title>
+  
+    <!-- 1. Include the Tailwind Play CDN script -->
+    <script src="https://cdn.tailwindcss.com"></script>
+  
+    <!-- 2. Configure Tailwind using a standard script tag -->
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              brandPrimary: '#0ea5e9', // Custom sky blue color
+              brandDark: '#1e293b',    // Custom dark slate color
+            },
+            spacing: {
+              '128': '32rem',          // Extra large custom spacing
+            }
+          }
+        }
+      }
+    </script>
+  
+    <!-- 3. (Optional) Add custom CSS using the text/tailwindcss script type -->
+    <style type="text/text/tailwindcss">
+      @layer utilities {
+        .custom-gradient {
+          @apply bg-gradient-to-r from-brandPrimary to-purple-600;
+        }
+      }
+    </style>
   </head>
-  <body>
+  <body class="bg-gray-100 flex items-center justify-center min-h-screen">
+
+    <!-- Using the configured custom styles -->
+    <div class="max-w-md p-8 bg-brandDark text-white rounded-2xl shadow-xl space-y-4">
+      <h1 class="text-3xl font-bold text-brandPrimary">
+        Tailwind CDN Config
+      </h1>
+      <p class="text-gray-300">
+        This card uses a custom background color, custom text color, and a custom gradient utility injected via script tags.
+      </p>
+      <button class="custom-gradient text-white font-semibold py-2 px-6 rounded-lg shadow hover:opacity-90 transition">
+        Custom Button
+      </button>
+    </div>
+
   </body>
 </html>
